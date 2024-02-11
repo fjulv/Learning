@@ -20,5 +20,27 @@ public class Main {
 
         Student.sortStudents(studentList);
 
+        Faculty firstFaculty = new Faculty("First");
+        Faculty secondFaculty = new Faculty("Second");
+
+        firstFaculty.addStudentToFaculty(student1);
+        firstFaculty.addStudentToFaculty(student2);
+        firstFaculty.addStudentToFaculty(student3);
+        secondFaculty.addStudentToFaculty(student4);
+        secondFaculty.addStudentToFaculty(student5);
+        secondFaculty.addStudentToFaculty(student6);
+
+        List<Faculty> facultyList = new ArrayList<>();
+        facultyList.add(firstFaculty);
+        facultyList.add(secondFaculty);
+
+        //Вывести имена всех студентов первого факультета из листа факультетов
+
+        facultyList.stream()
+                .filter(e -> e.getNameOfFaculty().equals("First"))
+                .flatMap(e -> e.getStudentList().stream())
+                .forEach(st -> System.out.println(st.getName()));
+
+
     }
 }
